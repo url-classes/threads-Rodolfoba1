@@ -1,23 +1,90 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package main;
+
+import static java.lang.Math.random;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.util.Random;
 
 /**
  *
  * @author migu_
  */
 public class frmMain extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmMain
-     */
+         Hilo miHilo1 = new Hilo();
+         Hilo miHilo2 = new Hilo();
+    
     public frmMain() {
         initComponents();
+        lblNumero1.setText("");
+        
+        lblLetra.setText("");
+        
+          //hilos
+        miHilo1.window = 1;
+        miHilo1.start();
+        miHilo2.window = 2;
+        miHilo2.start();
     }
-
+    
+    public class Hilo extends Thread {
+        public int window = 0;
+        private boolean run = false;
+        
+        public void startRunning(){
+            run  = true;
+        }
+        
+        public void stopRunning(){
+            run  = false;
+        }
+        
+        public int getRandom(){
+            int random = (int)(Math.random() * 10 + 1);
+            return random;
+        }
+        
+        public char getRandom2(){
+            Random random = new Random();
+            char randomizedCharacter = (char) (random.nextInt(26) + 'a');            
+            return randomizedCharacter;
+        }
+        
+        
+        @Override
+        public void run(){
+            while(window == 1){
+                while(run){
+                    lblNumero1.setText(String.valueOf(miHilo1.getRandom()));
+                     try{
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex){
+                        java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                }
+                try {
+                    Thread.sleep(100);                    
+                } catch(InterruptedException ex){
+                    java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);                 }
+            }
+            
+            while(window == 2){
+                while(run){
+                     lblLetra.setText(String.valueOf(miHilo2.getRandom2()));
+                     try{
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex){
+                        java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                }
+                try {
+                    Thread.sleep(100);                    
+                } catch(InterruptedException ex){
+                    java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);                 }
+            }
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,10 +163,12 @@ public class frmMain extends javax.swing.JFrame {
 
     private void btnIniciarNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarNumeroActionPerformed
         // TODO add your handling code here:
+        miHilo1.startRunning();
     }//GEN-LAST:event_btnIniciarNumeroActionPerformed
 
     private void btnIniciarLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarLetraActionPerformed
         // TODO add your handling code here:
+        miHilo2.startRunning();
     }//GEN-LAST:event_btnIniciarLetraActionPerformed
 
     /**
