@@ -57,13 +57,13 @@ public class frmMain extends javax.swing.JFrame {
                 while(run){
                     lblNumero1.setText(String.valueOf(miHilo1.getRandom()));
                      try{
-                        Thread.sleep(100);
+                        Thread.sleep(1);
                     } catch (InterruptedException ex){
                         java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     }
                 }
                 try {
-                    Thread.sleep(100);                    
+                    Thread.sleep(1);                    
                 } catch(InterruptedException ex){
                     java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);                 }
             }
@@ -72,13 +72,13 @@ public class frmMain extends javax.swing.JFrame {
                 while(run){
                      lblLetra.setText(String.valueOf(miHilo2.getRandom2()));
                      try{
-                        Thread.sleep(100);
+                        Thread.sleep(1);
                     } catch (InterruptedException ex){
                         java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     }
                 }
                 try {
-                    Thread.sleep(100);                    
+                    Thread.sleep(1);                    
                 } catch(InterruptedException ex){
                     java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);                 }
             }
